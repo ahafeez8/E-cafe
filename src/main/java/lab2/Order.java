@@ -15,6 +15,6 @@ public class Order {
 	}
 	public void get_time()
 	{
-		System.out.println("Order punched at: " +punch_time) ;
+		System.out.println("Order punched at: " +punch_time + "seconds") ;
 	}
 }

@@ -1,7 +1,9 @@
 package lab2;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
+import java.util.Stack;
 
 public class ecafe {
 
@@ -41,43 +43,59 @@ public class ecafe {
 		
 		}
 		//summarize order and bill
-		System.out.println("Select items by specifying item S#");
-		Scanner in = new Scanner(System.in);
+		cooks[] c = new cooks[4];
 		
-		Order o = new Order();//order created
-		o.get_time();
-		//take order info
-		ArrayList<Integer> picks = new ArrayList<Integer>(); //items picked by S#
+		Scanner in = new Scanner(System.in);	
+		Stack s = new Stack();
+		Stack s2 = new Stack();
+			Order[] o = new Order[5];//order created
+			for(int a = 0; a < 5; a++)
+			{
+				System.out.println("Place your order");
+				System.out.println("Select items by specifying item S#");
+				//take order info
+				ArrayList<Integer> picks = new ArrayList<Integer>(); //items picked by S#
+				
+				int c = 1;
+		 		int y = 0;
+		 		
+				while(c == 1)
+				{			
+					picks.add(in.nextInt());//type item number
+					System.out.println("1 : continue\n0 : done."); 
+					c = in.nextInt();		//check sentinal
+				}
+			
+				while(y < picks.size()) //loop till size of list
+				{
+					o[a].bill(i[picks.get(y++)]); //calculate bill
+				}
+				
+				System.out.println("\nYour total bill is:" + o[a].total); //print total
+				System.out.println("Specify your pick up type:\n S: Self, D: Delievered at your address.");
+				//select pick up type
+				//0 = delivered, 1 = self pickup
+				String p_type = in.next();
+				if(p_type.equals("S"))
+				{	
+					o[a].del_type  = 1;
+					s2.push(o[a]); //push self type to s2 stack
+				}
+				else if(p_type.equals("D"))
+				{
+					System.out.println("Please Specify a delivery address:");//if delievered, assign address
+					o[a].del_type = 0;
+					o[a].address = in.next();		
+					s.push(o[a]);//push delivery type pick up on stack so they are below self types
+				}
+			}
+			
+			Stack s3 = new Stack(); 
+			s3.push(s);//push delivery type orders first
+			s3.push(s2);//push self pick up type orders above 
+			
+			//Calculate Delivery time
 		
-		int c = 1;
- 		int y = 0;
- 		
-		while(c == 1)
-		{			
-			picks.add(in.nextInt());//type item number
-			System.out.println("1 : continue\n0 : done."); 
-			c = in.nextInt();		//check sentinal
-		}
-	
-		while(y < picks.size()) //loop till size of list
-		{
-			o.bill(i[picks.get(y++)]); //calculate bill
-		}
-		
-		System.out.println("\nYour total bill is:" + o.total); //print total
-		System.out.println("Specify your pick up type:\n S: Self, D: Delievered at your address.");
-		//select pick up type
-		//0 = delivered, 1 = self pickup
-		String p_type = in.next();
-		if(p_type.equals("S"))
-			o.del_type  = 1;
-		else if(p_type.equals("D"))
-		{
-			System.out.println("Please Specify a delivery address:");//if delievered, assign address
-			o.del_type = 0;
-			o.address = in.next();		
-		}
-		//Calculate Delivery time		
 		
 		
 	}

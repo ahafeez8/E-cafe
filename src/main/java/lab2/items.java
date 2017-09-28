@@ -16,10 +16,6 @@ public class items {
 	{
 		System.out.println(s_num + "   " + name +"                "+type+"                "+price);
 	}
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
-
-	}
+	
 
 }
