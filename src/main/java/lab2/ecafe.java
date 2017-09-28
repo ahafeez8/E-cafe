@@ -45,6 +45,7 @@ public class ecafe {
 		Scanner in = new Scanner(System.in);
 		
 		Order o = new Order();//order created
+		o.get_time();
 		//take order info
 		ArrayList<Integer> picks = new ArrayList<Integer>(); //items picked by S#
 		
@@ -74,10 +75,9 @@ public class ecafe {
 		{
 			System.out.println("Please Specify a delivery address:");//if delievered, assign address
 			o.del_type = 0;
-			o.address = in.next();
-			
+			o.address = in.next();		
 		}
-				
+		//Calculate Delivery time		
 		
 		
 	}
